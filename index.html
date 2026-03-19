@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Wallet Screening — Crypto Address Risk Analysis, Compliance Tools &amp; Best Practices (2026)</title>
+  <meta name="description" content="Wallet screening guide (2026): how to screen crypto wallet addresses for risk exposure, what on-chain risk categories mean, VASP compliance requirements, tool comparison (Chainalysis, Elliptic, TRM Labs), step-by-step screening workflow, handling flagged wallets, and SAR filing basics. Practical compliance focus.">
+  <meta name="author" content="Crypto Finance Experts">
+  <link rel="canonical" href="https://wallet-screening.example.com/">
+  <link rel="icon" type="image/png" href="Tornado.jpg">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://wallet-screening.example.com/">
+  <meta property="og:title" content="Wallet Screening — Crypto Address Risk Analysis, Compliance Tools &amp; Best Practices (2026)">
+  <meta property="og:description" content="How to screen crypto wallets for risk: on-chain risk categories, VASP obligations, blockchain analytics tools, flagged address handling, and SAR filing.">
+  <meta property="og:image" content="cover.png">
+
+  <!-- Twitter Card -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://wallet-screening.example.com/">
+  <meta property="twitter:title" content="Wallet Screening — Crypto Address Risk Analysis (2026)">
+  <meta property="twitter:description" content="Practical wallet screening guide: on-chain risk categories, VASP compliance, blockchain analytics tools, and step-by-step workflow.">
+  <meta property="twitter:image" content="cover.png">
+
+  <!-- Article Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Wallet Screening — Crypto Address Risk Analysis, Compliance Tools & Best Practices (2026)",
+    "description": "Comprehensive guide to crypto wallet screening: on-chain risk analysis, VASP obligations, blockchain analytics tools, flagged address handling, and SAR filing.",
+    "author": { "@type": "Organization", "name": "Crypto Finance Experts", "url": "https://wallet-screening.example.com/" },
+    "publisher": { "@type": "Organization", "name": "Crypto Finance Experts" },
+    "datePublished": "2026-01-20",
+    "dateModified": "2026-03-01",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://wallet-screening.example.com/" }
+  }
+  </script>
+
+  <!-- BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://wallet-screening.example.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Compliance Guides", "item": "https://wallet-screening.example.com/guides/" },
+      { "@type": "ListItem", "position": 3, "name": "Wallet Screening", "item": "https://wallet-screening.example.com/wallet-screening/" }
+    ]
+  }
+  </script>
+
+  <!-- FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is crypto wallet screening and why does it matter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Crypto wallet screening is the process of querying a blockchain analytics tool to assess whether a specific wallet address has transaction history linked to illicit activity — mixers, darknet markets, ransomware wallets, or OFAC-sanctioned addresses. It matters because regulated VASPs (exchanges, custodians, payment processors) have a legal obligation under FATF Recommendation 15 to apply risk-based AML controls, and wallet screening is the primary mechanism for fulfilling the transaction monitoring component of that obligation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What risk categories does wallet screening detect?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wallet screening tools identify exposure to: sanctioned entities (OFAC SDN list), cryptocurrency tumblers and mixers, darknet marketplace wallets, ransomware payment addresses, fraud and scam operations, unregulated P2P exchanges, and high-risk jurisdictions. Each category carries different compliance weight and triggers different responses — sanction exposure requires immediate blocking regardless of score, while indirect P2P exposure may only require enhanced documentation."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      /* Deep Indigo + Electric Violet */
+      --primary: #3730A3;
+      --primary-600: #312E81;
+      --primary-700: #1E1B4B;
+      --accent: #818CF8;
+      --accent-soft: #C7D2FE;
+
+      --ink: #EEF2FF;
+      --muted: #A1A1AA;
+      --muted-2: #71717A;
+
+      --bg: #04040F;
+      --panel: #07071A;
+      --panel-2: #0A0A22;
+      --line: rgba(255,255,255,.10);
+
+      --ok: #22C55E;
+      --warn: #F59E0B;
+      --error: #EF4444;
+
+      --shadow: 0 18px 44px rgba(0,0,0,.60);
+      --radius: 14px;
+      --radius-lg: 22px;
+      --gap: 1.25rem;
+      --gap-lg: 2rem;
+    }
+
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      color: var(--muted);
+      background:
+        radial-gradient(900px 600px at 10% 0%,   rgba(55,48,163,.24), transparent 60%),
+        radial-gradient(900px 600px at 88% 12%,  rgba(129,140,248,.09), transparent 60%),
+        radial-gradient(900px 600px at 50% 88%,  rgba(49,46,129,.18), transparent 60%),
+        linear-gradient(180deg, #030310 0%, #04040F 50%, #030310 100%);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: var(--accent); text-decoration: none }
+    a:hover { text-decoration: underline }
+    img { max-width: 100%; height: auto; display: block }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem }
+
+    h1,h2,h3,h4 { color: var(--ink); line-height: 1.25; margin: 0 0 .6rem }
+    h1 { font-size: clamp(2rem,4.5vw,3.1rem); font-weight: 950; letter-spacing: .2px }
+    h2 { font-size: clamp(1.35rem,2.8vw,2rem); margin-top: 2.2rem; padding-top: .6rem; border-top: 1px solid var(--line) }
+    h3 { font-size: clamp(1.05rem,2.2vw,1.3rem); color: var(--accent-soft) }
+
+    p,li,td,th { font-size: 1rem }
+    .lead { font-size: 1.125rem; color: #E0E7FF }
+    .muted { color: var(--muted) }
+    .muted-2 { color: var(--muted-2) }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      padding: .75rem 0;
+      font-size: .85rem;
+      color: var(--muted-2);
+    }
+    .breadcrumb a { color: var(--muted); font-weight: 600 }
+    .breadcrumb a:hover { color: var(--accent) }
+    .breadcrumb span { margin: 0 .4rem; opacity: .5 }
+
+    /* Meta bar */
+    .meta-bar {
+      display: flex; align-items: center; gap: 1rem;
+      flex-wrap: wrap; margin-bottom: .75rem;
+      font-size: .83rem; color: var(--muted-2);
+    }
+    .meta-bar time { font-weight: 700; color: var(--accent-soft) }
+
+    header.hero {
+      padding: clamp(2rem,6vw,4rem) 0;
+      background:
+        radial-gradient(700px 420px at 18% 10%, rgba(55,48,163,.26), transparent 60%),
+        radial-gradient(700px 420px at 90% 20%, rgba(129,140,248,.10), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0) 55%);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-grid { display: grid; gap: var(--gap-lg); grid-template-columns: 1fr }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(10,10,34,.88), rgba(7,7,26,.72));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: clamp(1rem,3vw,1.75rem);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    .brand-row { display: flex; align-items: center; gap: .9rem; margin-bottom: .75rem }
+    .brand-logo {
+      width: 54px; height: 54px; border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      padding: .35rem; object-fit: contain;
+      box-shadow: 0 10px 22px rgba(0,0,0,.40);
+      flex: 0 0 auto;
+    }
+
+    /* ===== CTA — big, keyword only ===== */
+    .cta-wrap { display: flex; justify-content: center; margin-top: 1.5rem }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #4F46E5 0%, #3730A3 55%, #6D28D9 100%);
+      color: #fff;
+      padding: 1.05rem 3rem;
+      border-radius: 14px;
+      font-weight: 900;
+      font-size: 1.15rem;
+      letter-spacing: .4px;
+      box-shadow:
+        0 0 0 1px rgba(129,140,248,.30),
+        0 8px 24px rgba(55,48,163,.50),
+        0 20px 48px rgba(55,48,163,.25);
+      border: 1px solid rgba(255,255,255,.18);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .cta:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow:
+        0 0 0 2px rgba(129,140,248,.50),
+        0 12px 32px rgba(55,48,163,.60),
+        0 28px 60px rgba(55,48,163,.30);
+      filter: brightness(1.1);
+      text-decoration: none;
+    }
+
+    .note {
+      border-left: 3px solid var(--accent);
+      padding: .75rem 1rem;
+      background: rgba(129,140,248,.08);
+      border-radius: 10px;
+      color: #E0E7FF;
+    }
+
+    section.step-guide { padding: clamp(2rem,6vw,3.5rem) 0 }
+    .steps { display: grid; gap: var(--gap); grid-template-columns: 1fr }
+    .step {
+      background: linear-gradient(180deg, rgba(10,10,34,.82), rgba(7,7,26,.66));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      box-shadow: 0 12px 26px rgba(0,0,0,.50);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .step:hover { transform: translateY(-4px); box-shadow: 0 18px 34px rgba(0,0,0,.60) }
+    .step .icon {
+      width: 54px; height: 54px; border-radius: 50%;
+      display: inline-grid; place-items: center;
+      background: rgba(55,48,163,.22);
+      margin-bottom: .6rem; color: var(--accent-soft);
+      font-weight: 950;
+      border: 1px solid rgba(255,255,255,.10);
+    }
+
+    main .card {
+      background: linear-gradient(180deg, rgba(10,10,34,.74), rgba(7,7,26,.60));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin: 1.25rem 0;
+      box-shadow: 0 12px 26px rgba(0,0,0,.50);
+    }
+
+    .grid-2 { display: grid; gap: var(--gap); grid-template-columns: 1fr }
+    .pillbar { display: flex; flex-wrap: wrap; gap: .6rem; margin: .75rem 0 0 }
+    .pill {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      padding: .4rem .65rem;
+      border-radius: 999px;
+      font-weight: 800;
+      color: #E0E7FF;
+    }
+
+    .toc {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(55,48,163,.12), rgba(255,255,255,.02));
+      border-radius: var(--radius);
+      padding: 1rem;
+    }
+    .toc strong { color: var(--ink) }
+    .toc ul { margin: .5rem 0 0; padding-left: 1.1rem }
+    .toc li { margin: .25rem 0 }
+    .toc a { font-weight: 800; color: var(--accent) }
+
+    table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 12px }
+    th,td { padding: .9rem; border-bottom: 1px solid var(--line) }
+    th { background: rgba(55,48,163,.12); color: var(--ink); text-align: left }
+    tr.highlight { background: rgba(55,48,163,.08) }
+    tr:hover { background: rgba(255,255,255,.03) }
+
+    .ok { color: var(--ok) } .warn { color: var(--warn) } .err { color: var(--error) }
+
+    .eeat {
+      background: linear-gradient(180deg, rgba(55,48,163,.10), rgba(255,255,255,.02));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: 0 12px 26px rgba(0,0,0,.50);
+    }
+
+    .faq-item { border-bottom: 1px solid var(--line); padding: .9rem 0 }
+    .faq-button {
+      all: unset; display: flex; justify-content: space-between; align-items: center;
+      width: 100%; cursor: pointer; padding: .3rem 0;
+    }
+    .faq-button:focus-visible { outline: 2px solid var(--accent) }
+    .faq-button h3 { margin: 0; font-weight: 950 }
+    .faq-content { max-height: 0; overflow: hidden; transition: max-height .28s ease }
+    .faq-content.open { padding-top: .6rem }
+    .faq-plus { font-weight: 950; color: var(--accent-soft); font-size: 1.1rem; flex-shrink: 0; margin-left: .75rem }
+
+    .callout-grid { display: grid; gap: var(--gap); grid-template-columns: 1fr; margin-top: .75rem }
+    .mini {
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1rem;
+    }
+    .mini h3 { margin-bottom: .35rem }
+    .kpi-badges { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .5rem }
+    .kpi-badges span {
+      border: 1px solid rgba(55,48,163,.28);
+      background: rgba(55,48,163,.12);
+      color: var(--accent-soft);
+      padding: .3rem .55rem;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: .9rem;
+    }
+
+    /* Stat blocks */
+    .stat-block { display: flex; flex-wrap: wrap; gap: var(--gap); margin: 1rem 0 }
+    .stat {
+      flex: 1; min-width: 155px;
+      background: rgba(55,48,163,.10);
+      border: 1px solid rgba(129,140,248,.18);
+      border-radius: var(--radius);
+      padding: .9rem 1rem;
+      text-align: center;
+    }
+    .stat-num { display: block; font-size: 1.75rem; font-weight: 950; color: var(--accent); line-height: 1.1 }
+    .stat-lbl { font-size: .82rem; color: var(--muted); margin-top: .25rem }
+
+    /* Risk bars */
+    .risk-bar-wrap { margin: .75rem 0 }
+    .risk-row { display: flex; align-items: center; gap: .75rem; margin: .4rem 0 }
+    .risk-lbl { min-width: 90px; font-size: .85rem; font-weight: 700; color: var(--accent-soft) }
+    .risk-track { flex: 1; height: 6px; background: rgba(255,255,255,.08); border-radius: 99px; overflow: hidden }
+    .risk-fill { height: 100%; border-radius: 99px }
+    .risk-fill.low  { background: linear-gradient(90deg,#15803D,#22C55E); width: 25% }
+    .risk-fill.med  { background: linear-gradient(90deg,#B45309,#F59E0B); width: 55% }
+    .risk-fill.high { background: linear-gradient(90deg,#7F1D1D,#EF4444); width: 88% }
+    .risk-val { min-width: 55px; text-align: right; font-size: .82rem; font-weight: 800 }
+
+    @media (min-width: 860px) {
+      .steps { grid-template-columns: repeat(4,1fr) }
+      .grid-2 { grid-template-columns: 1fr 1fr }
+      .callout-grid { grid-template-columns: 1fr 1fr }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero" role="banner">
+  <div class="container">
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="/guides/">Compliance Guides</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">Wallet Screening</span>
+    </nav>
+
+    <div class="hero-grid">
+      <div class="hero-card" aria-label="Intro">
+
+        <div class="meta-bar">
+          <span>By <strong>Crypto Finance Experts</strong></span>
+          <span>·</span>
+          <time datetime="2026-01-20">Updated March 18, 2026</time>
+          <span>·</span>
+          <span>11 min read</span>
+        </div>
+
+        <div class="brand-row">
+          <img class="brand-logo" src="Tornado.jpg" alt="Wallet screening compliance reference logo">
+          <div>
+            <div class="muted" style="font-weight:900;letter-spacing:.2px;">Operational Guide</div>
+            <div class="muted-2" style="font-size:.95rem;">On-Chain Risk Analysis&nbsp;•&nbsp;VASP Compliance&nbsp;•&nbsp;KYC/AML&nbsp;•&nbsp;Transaction Monitoring</div>
+          </div>
+        </div>
+
+        <h1>Wallet Screening</h1>
+        <p class="lead">
+          A practical, compliance-first guide to screening crypto wallet addresses:
+          how blockchain analytics tools assess on-chain risk, what exposure categories
+          actually mean, when regulators require it, how to pick the right tool,
+          and what to do when an address comes back flagged — whether you're running
+          a VASP compliance programme or checking a counterparty before a large transfer.
+        </p>
+
+        <div class="cta-wrap">
+          <a href="https://en.wikipedia.org/wiki/Cryptocurrency_tumbler"
+             class="cta"
+             target="_blank"
+             rel="noopener"
+             aria-label="Wallet Screening">
+            Wallet Screening
+          </a>
+        </div>
+
+        <div class="note" style="margin-top:1.25rem;">
+          <strong>Key principle:</strong> Wallet screening produces a risk signal, not a verdict.
+          The category breakdown — <em>what</em> the exposure is — matters far more than the
+          headline score number. Direct mixer exposure at one hop is a compliance problem.
+          The same score driven by indirect contact with a P2P platform at three hops
+          is a documentation exercise.
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="step-guide" aria-labelledby="workflow-title">
+  <div class="container">
+    <h2 id="workflow-title">Wallet Screening Workflow: Collect → Analyse → Classify → Act</h2>
+    <div class="steps" role="list">
+      <article class="step" role="listitem">
+        <div class="icon">①</div>
+        <h3>Collect the address and confirm the chain</h3>
+        <p>Gather the wallet address, confirm the blockchain (BTC, ETH, Tron, Solana, etc.), and establish context — is this an inbound deposit, a counterparty check, or an outbound withdrawal destination? Chain matters: tool coverage varies significantly.</p>
+      </article>
+      <article class="step" role="listitem">
+        <div class="icon">②</div>
+        <h3>Submit to your blockchain analytics provider</h3>
+        <p>Run the query via API or dashboard. The tool maps the wallet's transaction history to known entity clusters — exchanges, tumblers, darknet markets, ransomware groups, sanctioned addresses — and returns a risk score with a category breakdown.</p>
+      </article>
+      <article class="step" role="listitem">
+        <div class="icon">③</div>
+        <h3>Classify risk by category, not just score</h3>
+        <p>Read the exposure breakdown first. Sanction exposure requires immediate action regardless of score. Indirect P2P exposure at three hops through a legitimate exchange may score medium but require only enhanced documentation. Category type and hop distance determine the response.</p>
+      </article>
+      <article class="step" role="listitem">
+        <div class="icon">④</div>
+        <h3>Act, document, and build the audit trail</h3>
+        <p>Apply your risk policy, record the decision and rationale, and save the full report with timestamp. Regulators and auditors inspect the decision-making process — the audit trail is the compliance deliverable, not the score itself.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<main class="container" role="main">
+<article>
+
+  <section class="card toc" aria-label="Table of Contents">
+    <strong>On this page (Wallet Screening):</strong>
+    <ul>
+      <li><a href="#overview">Overview — what wallet screening is and who needs it</a></li>
+      <li><a href="#stats">Scale of the problem: illicit wallet activity in 2024–2026</a></li>
+      <li><a href="#how-it-works">How blockchain analytics trace wallet risk</a></li>
+      <li><a href="#risk-categories">Risk categories: what each exposure label means</a></li>
+      <li><a href="#legal">Legal requirements: when screening is mandatory</a></li>
+      <li><a href="#how-to">How to screen a wallet: step-by-step workflow</a></li>
+      <li><a href="#tools">Tool comparison: features, coverage, and integration</a></li>
+      <li><a href="#flagged">What to do when a wallet is flagged</a></li>
+      <li><a href="#review">Choosing a reliable screening provider</a></li>
+      <li><a href="#comparison">Manual vs automated vs API-integrated screening</a></li>
+      <li><a href="#best-practices">Best practices for compliance teams</a></li>
+      <li><a href="#troubleshooting">Troubleshooting: common screening issues</a></li>
+      <li><a href="#eeat">Sources &amp; references</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </section>
+
+  <section class="card" id="overview">
+    <h2>Wallet Screening Overview: What It Is and Who Needs It</h2>
+    <p>
+      Wallet screening is the process of querying a blockchain analytics tool to evaluate
+      whether a specific crypto wallet address has on-chain transaction history linked to
+      illicit activity. The tool traces fund flows through the transaction graph — mapping
+      the wallet's connections to known entity clusters and returning a risk score with
+      an exposure breakdown by category.
+    </p>
+
+    <div class="pillbar">
+      <span class="pill">On-Chain Risk Analysis</span>
+      <span class="pill">KYC/AML</span>
+      <span class="pill">VASP Compliance</span>
+      <span class="pill">Transaction Monitoring</span>
+      <span class="pill">CTF Screening</span>
+    </div>
+
+    <div class="callout-grid" role="list">
+      <div class="mini" role="listitem">
+        <h3>Who is legally required to screen</h3>
+        <p class="muted">
+          Regulated VASPs — exchanges, custodians, OTC desks, fiat on-ramps, payment processors —
+          face legal obligations under FATF Recommendation 15 to apply transaction monitoring
+          equivalent to traditional financial institutions. Failure to screen creates direct
+          regulatory exposure. Full FATF virtual asset guidance at
+          <a href="https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Guidance-RBA-virtual-assets-2021.html" target="_blank" rel="noopener nofollow">fatf-gafi.org</a>.
+        </p>
+        <div class="kpi-badges">
+          <span>Exchanges (CEX)</span><span>Custodians</span><span>OTC desks</span>
+        </div>
+      </div>
+      <div class="mini" role="listitem">
+        <h3>Who benefits from voluntary screening</h3>
+        <p class="muted">
+          DeFi treasury multisigs, DAOs receiving external contributions, and individuals
+          expecting large inbound transfers can proactively screen counterparty wallets.
+          Receiving funds from a tainted address can trigger asset freezes and create
+          downstream compliance exposure for the recipient — even without intent.
+        </p>
+        <div class="kpi-badges">
+          <span>DeFi treasuries</span><span>DAOs</span><span>Individual users</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:1rem;">
+      <strong>Operational framing:</strong> Screening is not about presuming guilt.
+      It is about understanding fund provenance to meet regulatory obligations
+      and protect your organisation from inadvertently processing criminal proceeds.
+      A well-documented, calibrated screening policy also protects users —
+      by creating a clear dispute path when legitimate wallets are flagged.
+    </div>
+  </section>
+
+  <section class="card" id="stats">
+    <h2>Scale of the Problem: Illicit Wallet Activity in 2024–2026</h2>
+    <p>
+      Understanding the scale of illicit crypto activity contextualises why wallet screening
+      is a genuine operational necessity — not a compliance checkbox. Data from Chainalysis
+      and the FATF's 2024 mutual evaluation rounds:
+    </p>
+
+    <div class="stat-block" aria-label="Key illicit activity statistics">
+      <div class="stat">
+        <span class="stat-num">$24.2B</span>
+        <div class="stat-lbl">Illicit crypto transactions identified in 2023<br><small>Chainalysis 2024 Crypto Crime Report</small></div>
+      </div>
+      <div class="stat">
+        <span class="stat-num">1.7M+</span>
+        <div class="stat-lbl">Unique illicit wallet addresses identified<br><small>Chainalysis, across all tracked chains</small></div>
+      </div>
+      <div class="stat">
+        <span class="stat-num">$11.5B</span>
+        <div class="stat-lbl">Sent to sanctioned entities in 2023<br><small>Largest illicit category by volume</small></div>
+      </div>
+      <div class="stat">
+        <span class="stat-num">72%</span>
+        <div class="stat-lbl">Of illicit crypto passes through centralised services<br><small>FATF 2024 — underscoring VASP screening obligations</small></div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Why the 72% figure matters for VASPs:</strong> The vast majority of illicit crypto
+      flows through centralised platforms at some point — meaning VASPs are the primary
+      chokepoint for AML controls in the crypto ecosystem. Regulators use this figure to
+      justify the intensity of their VASP scrutiny. Full data at
+      <a href="https://www.chainalysis.com/reports/crypto-crime-report/" target="_blank" rel="noopener nofollow">chainalysis.com/reports</a>.
+    </div>
+  </section>
+
+  <section class="card" id="how-it-works">
+    <h2>How Blockchain Analytics Trace Wallet Risk</h2>
+    <p>
+      Blockchain analytics tools work by maintaining continuously-updated entity databases —
+      large collections of wallet address clusters attributed to specific real-world entities.
+      When you submit an address for screening, the tool calculates how many transaction hops
+      separate it from each known entity cluster and what share of its fund flows went through
+      risky categories.
+    </p>
+
+    <div class="callout-grid">
+      <div class="mini">
+        <h3>Heuristic clustering: how wallets get attributed</h3>
+        <p class="muted">
+          The most widely used technique is "common input ownership" — addresses appearing
+          together as inputs to the same transaction likely share an owner. Analytics firms
+          layer on top of this: exchange deposit patterns, law enforcement intelligence,
+          blockchain memo data, and OSINT. The result is named entity clusters ("Binance hot
+          wallet cluster," "Hydra Market cluster") that let tools trace whether a scanned
+          wallet has interacted with those entities.
+        </p>
+        <div class="kpi-badges"><span>Common input heuristic</span><span>Deposit patterns</span><span>Law enforcement intel</span></div>
+      </div>
+      <div class="mini">
+        <h3>Why hop distance is the most important variable</h3>
+        <p class="muted">
+          Direct exposure (1 hop) means your wallet transacted directly with a known illicit
+          cluster. Indirect exposure (2+ hops) means a counterparty of yours did so.
+          Tools weight these very differently. A wallet that directly sent to a
+          <a href="https://en.wikipedia.org/wiki/Cryptocurrency_tumbler" target="_blank" rel="noopener nofollow">cryptocurrency tumbler</a>
+          is treated as a serious red flag. The same wallet connected to a tumbler via three
+          intermediate legitimate exchanges produces a far lower effective risk signal.
+        </p>
+        <div class="kpi-badges"><span>1 hop = direct</span><span>2+ hops = indirect</span><span>Distance × volume</span></div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Inherent limitation to build policy around:</strong> Heuristic clustering is
+      probabilistic, not deterministic. False positives are an inherent feature of the method —
+      particularly for CoinJoin users, shared exchange hot wallets, and multi-sig setups.
+      Risk scores must be treated as inputs to decisions, not as conclusions.
+      Every high-risk screening result should receive human analyst review before adverse action.
+    </div>
+  </section>
+
+  <section class="card" id="risk-categories">
+    <h2>Risk Categories: What Each Exposure Label Means</h2>
+    <p>
+      Treating all risk categories identically produces miscalibrated compliance programmes
+      with unnecessary false positives and genuine risk miss. Each category carries
+      different legal weight and calls for a different response.
+    </p>
+
+    <div class="risk-bar-wrap" aria-label="Risk score thresholds">
+      <div class="risk-row">
+        <span class="risk-lbl">Low (0–25)</span>
+        <div class="risk-track"><div class="risk-fill low"></div></div>
+        <span class="risk-val ok">Proceed</span>
+      </div>
+      <div class="risk-row">
+        <span class="risk-lbl">Medium (26–74)</span>
+        <div class="risk-track"><div class="risk-fill med"></div></div>
+        <span class="risk-val warn">Review + EDD</span>
+      </div>
+      <div class="risk-row">
+        <span class="risk-lbl">High (75–100)</span>
+        <div class="risk-track"><div class="risk-fill high"></div></div>
+        <span class="risk-val err">Block / SAR</span>
+      </div>
+    </div>
+
+    <table aria-label="Wallet screening risk categories">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Severity</th>
+          <th>What it indicates</th>
+          <th>Compliance response</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><strong>Sanctioned entity (OFAC SDN)</strong></td>
+          <td class="err">Critical</td>
+          <td>Direct or near-direct interaction with OFAC-listed wallet</td>
+          <td>Immediate block; no discretion; SAR filing mandatory for US-nexus VASPs</td>
+        </tr>
+        <tr>
+          <td><strong>Mixer / tumbler</strong></td>
+          <td class="err">High</td>
+          <td>Funds passed through a service designed to obscure transaction provenance</td>
+          <td>Block above volume threshold; source-of-funds request; possible SAR</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>Darknet market</strong></td>
+          <td class="err">High</td>
+          <td>Direct or near-direct interaction with marketplace deposit addresses</td>
+          <td>Block; SAR filing strongly recommended; investigate source of funds</td>
+        </tr>
+        <tr>
+          <td><strong>Ransomware</strong></td>
+          <td class="err">High</td>
+          <td>Payments to tracked ransomware operator wallets</td>
+          <td>Block; SAR; note that paying ransomware may itself be prohibited in some jurisdictions</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>Fraud / scam</strong></td>
+          <td class="warn">Medium–High</td>
+          <td>Links to investment scam, phishing, or rug pull operation</td>
+          <td>Assess whether user is victim or participant; enhanced review; consider SAR</td>
+        </tr>
+        <tr>
+          <td><strong>Unregulated P2P exchange</strong></td>
+          <td class="warn">Medium</td>
+          <td>High-volume flow through non-KYC P2P platform</td>
+          <td>Enhanced due diligence; request source-of-funds documentation</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>Gambling</strong></td>
+          <td class="warn">Low–Medium</td>
+          <td>Interaction with crypto gambling platform</td>
+          <td>Jurisdiction-dependent; document; assess volume and frequency</td>
+        </tr>
+        <tr>
+          <td><strong>Regulated exchange</strong></td>
+          <td class="ok">Low</td>
+          <td>Exposure only to licensed, KYC-compliant entities</td>
+          <td>Proceed; standard monitoring</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <strong>Calibration principle:</strong> Build tiered responses per category before
+      configuring any tool threshold. Sanctions exposure requires automatic blocking regardless
+      of score. Indirect P2P at three hops below a dollar threshold requires documentation only.
+      Writing the category-response matrix first prevents inconsistent ad-hoc decisions later.
+    </div>
+  </section>
+
+  <section class="card" id="legal">
+    <h2>Legal Requirements: When Wallet Screening Is Mandatory</h2>
+    <p>
+      The regulatory obligation to screen crypto wallets flows from AML/CFT frameworks
+      that treat VASPs as obligated entities equivalent to traditional financial institutions.
+    </p>
+    <ul>
+      <li>
+        <strong>FATF Recommendation 15 (global):</strong> requires VASPs to apply the full
+        AML/CFT framework including transaction monitoring. The 2021 updated guidance specifies
+        that "ongoing due diligence on the business relationship" applies to virtual asset
+        transactions — which in practice means screening counterparty wallets.
+        Full text at <a href="https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Recommendations.html" target="_blank" rel="noopener nofollow">fatf-gafi.org</a>.
+      </li>
+      <li>
+        <strong>EU Transfer of Funds Regulation (TFR, 2023):</strong> no minimum threshold —
+        all crypto transfers require originator and beneficiary information. The practical
+        implication is that wallet screening is embedded in every transaction flow, not just
+        large transfers.
+      </li>
+      <li>
+        <strong>US Bank Secrecy Act / FinCEN:</strong> MSBs dealing in virtual currency must
+        file SARs for suspicious activity. OFAC sanctions screening is a separate, parallel
+        obligation — any US-nexus entity must screen against the SDN list.
+        FinCEN guidance at <a href="https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-certain-business-models" target="_blank" rel="noopener nofollow">fincen.gov</a>.
+      </li>
+      <li>
+        <strong>UK FCA:</strong> cryptoasset businesses registered under the Money Laundering
+        Regulations 2017 must conduct full CDD and ongoing monitoring. The FCA's 2023
+        financial crime guide explicitly addresses virtual asset transaction monitoring.
+      </li>
+    </ul>
+
+    <div class="note">
+      <strong>DeFi grey area:</strong> Truly decentralised protocols without a central operator
+      currently sit in a regulatory grey area in most jurisdictions. However, frontend operators,
+      deployer teams, and governance token holders increasingly face scrutiny. The safe default
+      for any team receiving material external funds is to treat wallet screening as applicable.
+    </div>
+  </section>
+
+  <section class="card" id="how-to">
+    <h2>How to Screen a Wallet Address: Step-by-Step Workflow</h2>
+    <ol>
+      <li>
+        <strong>Confirm the blockchain and gather the address.</strong> Verify whether you have a BTC, ETH, Tron, Solana, or other chain address. Most modern tools auto-detect, but misidentified chains return incomplete results. Note the transaction context — deposit, withdrawal, or counterparty check.
+      </li>
+      <li>
+        <strong>Select the right tool for your use case and volume.</strong> Enterprise platforms (Chainalysis KYT, Elliptic Navigator) suit large exchanges requiring API integration and forensic-quality results. Mid-market VASPs often use TRM Labs or Crystal Blockchain. Match the tool to your throughput and the chains your users actually transact on.
+      </li>
+      <li>
+        <strong>Submit the query and retrieve the full report.</strong> Do not act on the headline score alone — download or save the full category breakdown, hop distances, and the specific entity names flagged. This becomes part of your compliance documentation.
+      </li>
+      <li>
+        <strong>Read the category breakdown before the score.</strong> Identify the highest-severity exposure category present. Apply your risk policy to that category — not to the score average. A wallet with 2% direct sanction exposure and an overall score of 30 still requires immediate action.
+      </li>
+      <li>
+        <strong>Apply your documented risk policy thresholds.</strong> Your tier responses — proceed, enhanced due diligence, block — must be documented before the screening event. The screening output is the trigger; the policy is the decision framework.
+      </li>
+      <li>
+        <strong>Record the complete decision trail.</strong> Log: address screened, date and time, tool used, report reference, risk score, categories flagged, your assessment, the action taken, and the policy provision under which you acted. This is what regulators examine.
+      </li>
+      <li>
+        <strong>Schedule re-screening for ongoing relationships.</strong> A wallet clean at onboarding can interact with a mixer six months later. Periodic batch re-screening — quarterly minimum for standard-risk users — is required by FATF Recommendation 15's ongoing monitoring obligation.
+      </li>
+    </ol>
+
+    <div class="note">
+      <strong>Integration principle:</strong> Build screening into your deposit and withdrawal
+      workflows as an automated API call — not a manual step. Manual processes develop gaps
+      under operational pressure. Automation ensures complete coverage and a consistent
+      audit trail without depending on individual staff remembering to run the check.
+    </div>
+  </section>
+
+  <section class="card" id="tools">
+    <h2>Tool Comparison: Wallet Screening Providers — Features and Coverage</h2>
+    <p>
+      Major blockchain analytics platforms differ meaningfully on chain coverage, entity
+      database breadth, and integration options. Run your own test set across shortlisted
+      vendors before committing.
+    </p>
+
+    <table aria-label="Wallet screening tool comparison">
+      <thead>
+        <tr>
+          <th>Provider</th>
+          <th>Chain coverage</th>
+          <th>Key strength</th>
+          <th>Best for</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><strong>Chainalysis KYT</strong></td>
+          <td>BTC, ETH, Tron, SOL, 20+ more</td>
+          <td>Broadest entity database; law enforcement relationships; forensic quality</td>
+          <td>Large exchanges; financial institutions; forensic investigations</td>
+        </tr>
+        <tr>
+          <td><strong>Elliptic Navigator</strong></td>
+          <td>BTC, ETH, DeFi protocols, cross-chain</td>
+          <td>Strong DeFi coverage; cross-chain holistic scoring</td>
+          <td>DeFi protocols; cross-chain operations; multi-asset fintechs</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>TRM Labs</strong></td>
+          <td>30+ chains (SOL, AVAX, NEAR, ALGO)</td>
+          <td>Wide chain support; competitive pricing; Travel Rule tooling</td>
+          <td>Mid-market VASPs; neobanks; emerging market operations</td>
+        </tr>
+        <tr>
+          <td><strong>Crystal Blockchain</strong></td>
+          <td>BTC, ETH, ERC-20, LTC</td>
+          <td>Detailed BTC tracing; EU compliance reporting templates</td>
+          <td>European VASPs; BTC-focused compliance teams</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <strong>Vendor selection principle:</strong> No tool has complete coverage across all
+      chains and entity types. For high-stakes decisions, running the same address through
+      two providers and comparing outputs is sound practice. Published methodology docs:
+      <a href="https://www.chainalysis.com/reports/crypto-crime-report/" target="_blank" rel="noopener nofollow">Chainalysis reports</a>
+      and
+      <a href="https://www.elliptic.co/resources" target="_blank" rel="noopener nofollow">Elliptic resources</a>.
+    </div>
+  </section>
+
+  <section class="card" id="flagged">
+    <h2>What to Do When a Wallet Is Flagged</h2>
+    <p>
+      A flagged wallet requires a structured response — not an automatic block. The appropriate
+      action depends on what category drove the flag, at what hop distance, and what evidence
+      the user can provide.
+    </p>
+
+    <h3>If your own wallet is flagged by a platform</h3>
+    <ul>
+      <li><strong>Request the specific exposure category in writing.</strong> You are entitled to know what triggered the flag. "Compliance system" is not an adequate explanation — ask whether it is sanctions, mixer, darknet, or another category.</li>
+      <li><strong>Gather source-of-funds documentation.</strong> Exchange withdrawal records, bank statements, payroll documentation, or OTC desk receipts demonstrate that funds originated from a legitimate source — even if a previous wallet owner contributed to the risk score.</li>
+      <li><strong>Run the address yourself</strong> using any analytics tool to understand what exposure is being flagged. Compare the output to the platform's explanation — significant divergence may indicate a false positive worth disputing.</li>
+      <li><strong>Submit a formal dispute</strong> with supporting evidence to the platform's compliance team. Most regulated exchanges have a review process; many will unblock an account within 5–10 business days when clear source-of-funds evidence is provided.</li>
+    </ul>
+
+    <h3>If you are the operator blocking a user</h3>
+    <ul>
+      <li>Document the category breakdown and the specific policy provision under which you are acting before blocking. "Tool score = 80" is not sufficient — cite the category and your policy section.</li>
+      <li>Notify the user that their account is restricted for compliance reasons without disclosing whether you have filed or are filing a SAR — tipping off is prohibited in most jurisdictions.</li>
+      <li>File any required SAR with your jurisdiction's FIU (FinCEN for US VASPs; NCA for UK; national FIU for EU) before releasing or blocking funds where the obligation applies.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Hard rule:</strong> Never take adverse action based on a risk score alone without
+      reviewing the category breakdown. Automated blocking on medium scores without human
+      review creates avoidable false positives and potential wrongful account closure liability.
+    </div>
+  </section>
+
+  <section class="card" id="review">
+    <h2>Choosing a Reliable Wallet Screening Provider</h2>
+    <p>
+      Screening tool quality is auditable. Regulators are increasingly examining not just
+      whether VASPs use a tool, but whether they chose a credible one and acted appropriately
+      on its output.
+    </p>
+
+    <div class="callout-grid">
+      <div class="mini">
+        <h3>Signals of a quality provider</h3>
+        <p class="muted">
+          Published, regularly updated methodology documentation explaining score calculation.
+          Regular public illicit activity reports with traceable statistics.
+          Demonstrated law enforcement usage — tools used in prosecutions tend to have
+          higher-quality entity attribution. Clear process for disputing incorrect entity
+          clustering. SOC 2 Type II or equivalent certification. Transparent data
+          retention and privacy policy relevant to your jurisdiction.
+        </p>
+      </div>
+      <div class="mini">
+        <h3>Warning signs to evaluate</h3>
+        <p class="muted">
+          No published methodology — a score with no explanation cannot be defended in
+          a compliance audit or legal dispute.
+          Overconfident language ("this address is criminal") rather than probabilistic framing.
+          Thin coverage for the chains your users actually use.
+          No exportable audit trail for your compliance records.
+          Pricing structures that incentivise blocking over accuracy (per-block fees).
+        </p>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>2026 regulatory context:</strong> EU MiCA, UK FCA crypto regime, and FinCEN
+      examination guidance all now assess the calibre of VASP AML programmes — asking whether
+      compliance actions were proportionate and evidence-based, not merely whether a tool
+      was deployed. Vendor selection is a compliance decision that regulators can and do audit.
+    </div>
+  </section>
+
+  <section class="card" id="comparison">
+    <h2>Manual vs Automated vs API-Integrated Screening</h2>
+    <table aria-label="Screening method comparison">
+      <thead>
+        <tr><th>Method</th><th>Best for</th><th>Pros</th><th>Cons</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><strong>Manual dashboard</strong></td>
+          <td>Low volume; individual checks; investigations</td>
+          <td>No integration required; analyst context; flexible interpretation</td>
+          <td>Does not scale; gaps under operational pressure; no systematic coverage</td>
+        </tr>
+        <tr>
+          <td><strong>Batch screening</strong></td>
+          <td>Periodic review of existing user wallets; portfolio monitoring</td>
+          <td>Covers existing book; catches newly-attributed risk in database updates</td>
+          <td>Lagging — not real-time; requires scheduling and data export process</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>Real-time API</strong></td>
+          <td>Exchanges; payment processors; high-volume VASPs</td>
+          <td>Every transaction screened; automated decision flow; complete audit log</td>
+          <td>Integration cost; requires codified risk policy; latency management needed</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <strong>Scale threshold:</strong> Any regulated VASP processing more than a few hundred
+      transactions per day requires real-time API screening. Manual screening at scale is not
+      a compliance programme — it is an audit liability waiting to be discovered.
+    </div>
+  </section>
+
+  <section class="card" id="best-practices">
+    <h2>Best Practices for Compliance Teams Running Wallet Screening</h2>
+    <ul>
+      <li><strong>Write your risk-response matrix before configuring any tool.</strong> Define which category at which hop distance and volume triggers which response — proceed, EDD, block, SAR. Vendor defaults are a starting point, not a compliance policy.</li>
+      <li><strong>Screen on deposit and withdrawal, not just onboarding.</strong> A wallet clean at signup can interact with a mixer or sanctions-listed entity months later. Ongoing transaction monitoring is the FATF standard, not a point-in-time check.</li>
+      <li><strong>Train analysts to read category breakdowns, not just scores.</strong> A team that understands hop distance, clustering heuristics, and category weighting makes proportionate decisions. A team that reads only scores produces unnecessary false positives.</li>
+      <li><strong>Document every decision with specific policy citations.</strong> "Tool score = 82, policy section 4.3 requires block at &gt;75 for mixer exposure, action: account suspended" is defensible. "Tool flagged it" is not.</li>
+      <li><strong>Measure and report your false positive rate quarterly.</strong> If more than 10–15% of blocked accounts are cleared after manual review, your thresholds are miscalibrated. Adjust the category-response matrix, not the tool.</li>
+      <li><strong>Build a user-facing dispute process before launch.</strong> False positives will happen. A documented 5-business-day review SLA for flagged accounts protects users and demonstrates good-faith compliance to regulators.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Most common mistake:</strong> Treating a high score as conclusive and blocking
+      without reviewing the category breakdown. The score aggregates multiple exposure types
+      at multiple hop distances. A wallet can score 80 with zero direct illicit exposure —
+      driven entirely by indirect connections through an unregulated exchange at four hops.
+      Read what the score is composed of before acting.
+    </div>
+  </section>
+
+  <section class="card" id="troubleshooting">
+    <h2>Troubleshooting: Common Wallet Screening Issues</h2>
+
+    <h3>"High score on a wallet that's never touched a mixer"</h3>
+    <ul>
+      <li>You may have received funds from a counterparty who used a
+        <a href="https://en.wikipedia.org/wiki/Cryptocurrency_tumbler" target="_blank" rel="noopener nofollow">cryptocurrency tumbler</a>
+        — indirect exposure at 1–2 hops can still produce elevated scores on tools with aggressive
+        indirect weighting. Run the address on a second tool and compare the category breakdown.</li>
+      <li>If funds originated from a regulated exchange withdrawal, request a certificate of withdrawal. Most major exchanges will provide documentation for compliance dispute purposes.</li>
+    </ul>
+
+    <h3>"Score changed without any new on-chain transactions"</h3>
+    <ul>
+      <li>Analytics providers continuously update their entity databases. An address in a previously-neutral cluster may now be attributed to a newly-identified illicit entity — changing its historical score retroactively. Document the before and after scores with dates; investigate whether the new attribution appears credible given the actual transaction history.</li>
+    </ul>
+
+    <h3>"Two tools return very different scores for the same wallet"</h3>
+    <ul>
+      <li>Vendor databases, clustering heuristics, and hop-weighting methodologies genuinely differ. One tool may attribute an intermediate cluster to a regulated exchange; another leaves it unattributed, producing a higher indirect exposure score. Use the more conservative score as your compliance starting point, then apply human analyst review on the category breakdown rather than averaging the numbers.</li>
+    </ul>
+
+    <h3>"Compliance team can't agree on how to handle a medium-score result"</h3>
+    <ul>
+      <li>Disagreement on medium scores is a policy documentation gap, not a tool problem. Medium-risk wallets are where the category-response matrix must be explicit. If the matrix doesn't specify which category combination at which hop distance triggers which action, write that policy before the next disputed case — not during it.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Best debugging approach:</strong> Use the tool's transaction graph visualisation
+      to trace the specific entities and paths that generated the score.
+      Converting "score = 74" into "this specific entity at this specific hop distance through
+      this volume" turns an opaque number into an actionable compliance picture.
+    </div>
+  </section>
+
+  <section class="eeat" id="eeat" aria-labelledby="eeat-title">
+    <h2 id="eeat-title">Wallet Screening: Sources &amp; Authoritative References</h2>
+    <p>All sources are official regulatory documents, primary research publications, or established analytics providers with publicly verifiable methodology documentation.</p>
+
+    <div class="grid-2">
+      <div>
+        <h3>Regulatory standards</h3>
+        <ul>
+          <li><a href="https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Recommendations.html" target="_blank" rel="noopener nofollow">FATF — The 40 Recommendations (Recommendation 15: Virtual Assets)</a></li>
+          <li><a href="https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Guidance-RBA-virtual-assets-2021.html" target="_blank" rel="noopener nofollow">FATF — Risk-Based Approach Guidance for Virtual Assets (2021)</a></li>
+          <li><a href="https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-certain-business-models" target="_blank" rel="noopener nofollow">FinCEN — BSA Application to Virtual Currency MSBs</a></li>
+          <li><a href="https://ofac.treasury.gov/sanctions-programs-and-country-information" target="_blank" rel="noopener nofollow">OFAC — Sanctions Programs &amp; SDN List</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Industry research &amp; analytics</h3>
+        <ul>
+          <li><a href="https://www.chainalysis.com/reports/crypto-crime-report/" target="_blank" rel="noopener nofollow">Chainalysis — 2024 Crypto Crime Report (statistics source)</a></li>
+          <li><a href="https://www.elliptic.co/resources" target="_blank" rel="noopener nofollow">Elliptic — Typologies Reports &amp; Methodology</a></li>
+          <li><a href="https://www.trmlabs.com/blog" target="_blank" rel="noopener nofollow">TRM Labs — Blockchain Intelligence Research</a></li>
+          <li><a href="https://crystalblockchain.com/resources/" target="_blank" rel="noopener nofollow">Crystal Blockchain — Compliance Resources</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Cryptocurrency_tumbler" target="_blank" rel="noopener nofollow">Wikipedia — Cryptocurrency Tumbler (technical reference)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:1rem;">
+      <strong>About:</strong> Prepared by Crypto Finance Experts as a practical, SEO-optimised
+      knowledge base covering crypto wallet screening: on-chain risk analysis, entity clustering,
+      risk categories, VASP legal obligations, tool comparison, flagged wallet handling,
+      and troubleshooting. Updated <time datetime="2026-01-20">March 2026</time>. Not legal advice.
+    </div>
+  </section>
+
+  <section class="card faq-section" aria-labelledby="faq">
+    <h2 id="faq">Wallet Screening: Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f1" id="b1">
+        <h3>What is crypto wallet screening and why does it matter?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f1" class="faq-content" role="region" aria-labelledby="b1">
+        <p>Crypto wallet screening is the process of querying a blockchain analytics tool to assess whether a specific wallet address has transaction history linked to illicit activity — mixers, darknet markets, ransomware operators, and OFAC-sanctioned wallets. The tool traces the address's fund flows through the transaction graph, maps those flows to known entity clusters, and returns a risk score with a breakdown by exposure category.</p>
+        <p>It matters because regulated Virtual Asset Service Providers (VASPs) — exchanges, custodians, OTC desks, and fiat on-ramps — have a legal obligation under FATF Recommendation 15 to apply transaction monitoring equivalent to traditional financial institutions. Wallet screening is the primary mechanism for fulfilling that ongoing monitoring obligation in crypto. Non-compliance creates direct regulatory exposure: FATF mutual evaluations in 2023–2024 found that over 60% of assessed VASPs had inadequate AML controls, with wallet screening gaps cited as a common deficiency.</p>
+        <p>Beyond legal obligation, screening protects the organisation from inadvertently processing criminal proceeds — which can result in asset freezes, reputational damage, and in serious cases, secondary liability for money laundering facilitation.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f2" id="b2">
+        <h3>What risk categories does wallet screening detect?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f2" class="faq-content" role="region" aria-labelledby="b2">
+        <p>Wallet screening reports break down exposure by the type of entity the scanned address has interacted with. The categories with the highest compliance significance are:</p>
+        <p><strong>Sanctioned entities (OFAC SDN list)</strong> — the most severe category. Direct or near-direct interaction with an OFAC-listed wallet is a legal obligation for US-nexus VASPs, requiring immediate action regardless of the overall score. <strong>Cryptocurrency tumblers and mixers</strong> — services designed to obscure fund provenance. Even indirect mixer exposure at one or two hops is treated as a significant red flag, as the explicit purpose of mixing is to defeat AML tracing. <strong>Darknet marketplace wallets</strong> — deposit addresses for illicit online markets. <strong>Ransomware operators</strong> — wallets receiving ransomware payments from tracked groups.</p>
+        <p>Lower-severity categories include unregulated P2P exchanges (which require enhanced due diligence rather than automatic blocking), gambling platforms (jurisdiction-dependent), and high-risk jurisdiction entities. Each category should trigger a different response calibrated to its actual compliance significance rather than a single threshold across all types.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f3" id="b3">
+        <h3>How accurate is blockchain wallet screening?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f3" class="faq-content" role="region" aria-labelledby="b3">
+        <p>Blockchain analytics tools produce probabilistic estimates, not forensic certainties. Accuracy varies by chain, entity type, and how recently the database was updated. The tools are generally reliable for well-studied chains like Bitcoin and Ethereum, and for well-documented illicit entities like major ransomware groups and darknet markets where law enforcement intelligence has been incorporated.</p>
+        <p>False positives occur regularly in several specific scenarios: CoinJoin users whose privacy technique resembles mixer activity; large exchange hot wallets shared across thousands of customers (any user who withdraws from a Binance hot wallet technically shares indirect exposure to every other Binance user, including illicit depositors); and addresses in newly-reclassified clusters whose attribution has changed since a previous clean scan. These limitations are why analyst review before adverse action — not automated blocking on all medium scores — is the expected compliance standard.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f4" id="b4">
+        <h3>Is wallet screening legally required for crypto businesses?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f4" class="faq-content" role="region" aria-labelledby="b4">
+        <p>Yes — for regulated VASPs. FATF Recommendation 15 requires VASPs to apply ongoing transaction monitoring as part of their AML/CFT framework. In the EU, the Transfer of Funds Regulation (TFR) effective June 2023 extends this to all transfers with no minimum threshold. In the US, FinCEN's Bank Secrecy Act rules require SAR filing for suspicious activity and mandate OFAC screening as a parallel obligation. The UK FCA requires registered cryptoasset businesses to conduct monitoring under the Money Laundering Regulations 2017.</p>
+        <p>The regulatory trend is towards increasingly stringent enforcement. FATF's 2023–2024 mutual evaluation rounds specifically cited wallet screening gaps as a compliance deficiency in multiple jurisdictions. What was previously treated as best practice is now considered a minimum standard for any regulated VASP. DeFi protocols without a centralised operator remain in a regulatory grey area in most jurisdictions, but the grey area is narrowing.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f5" id="b5">
+        <h3>My wallet was flagged and funds frozen — what are my options?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f5" class="faq-content" role="region" aria-labelledby="b5">
+        <p>First, request in writing the specific exposure category that triggered the freeze. Regulated exchanges in most jurisdictions must disclose the basis for adverse action — "compliance system" is not adequate. Ask explicitly whether the issue is sanctions, mixer, darknet, fraud, or another category, and at what hop distance.</p>
+        <p>Second, gather source-of-funds documentation. If your funds came from a regulated exchange, request a certificate of withdrawal from that exchange documenting the origin within their custodial system. If you received employment income or a business payment, bank statements and payroll records establish the legitimate source. If you purchased via a reputable OTC desk, their transaction receipt is relevant.</p>
+        <p>Third, run the flagged address through a second analytics tool to understand what specific entity or path is driving the score. If the outputs from two providers diverge significantly, this is evidence of a potential false positive worth formally disputing. Submit your documentation and the discrepancy analysis to the exchange's compliance review team. Most major exchanges clear legitimate false positives within five to ten business days when clear evidence is provided.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f6" id="b6">
+        <h3>What is the difference between wallet screening and KYC?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f6" class="faq-content" role="region" aria-labelledby="b6">
+        <p>KYC (Know Your Customer) verifies the identity of the person behind a wallet — collecting documents like passports, proof of address, and matching them to a human or legal entity. Wallet screening assesses the on-chain transaction history of the wallet address itself — whether its fund flows have been proximate to illicit activity, regardless of who controls it.</p>
+        <p>Both are components of a complete AML programme and complement each other. KYC alone does not protect against a verified user transacting through mixers or receiving funds from ransomware operators. Wallet screening alone does not tell you who controls the wallet or whether the person has been sanctioned as an individual. Effective VASP compliance programmes run both: KYC at onboarding to establish identity, ongoing wallet screening at the transaction level to monitor fund-flow risk throughout the relationship.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f7" id="b7">
+        <h3>How often should wallets be re-screened?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f7" class="faq-content" role="region" aria-labelledby="b7">
+        <p>For transactional relationships: screen in real time at every deposit and withdrawal via API. A wallet clean today can interact with a mixer or sanctioned address next month — onboarding-only screening misses all post-signup illicit activity.</p>
+        <p>For existing user wallets in your book: periodic batch re-screening is standard practice — quarterly minimum for standard-risk users, monthly for high-value accounts. Analytics provider databases are updated continuously. An address in a previously-neutral cluster may be re-attributed to a newly-discovered illicit entity, changing its score without any new on-chain activity from the user. Periodic re-screening catches these dataset updates retroactively applied to your user base. Document each re-screening run with dates and results to demonstrate the ongoing monitoring obligation required by FATF Recommendation 15.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f8" id="b8">
+        <h3>Which wallet screening tool should I choose?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f8" class="faq-content" role="region" aria-labelledby="b8">
+        <p>The right tool depends on your primary blockchain exposure, transaction volume, integration requirements, and budget. Chainalysis KYT is the market leader for large exchanges — broadest entity database, strongest law enforcement relationships, most defensible in regulatory examinations. Elliptic Navigator has stronger DeFi and cross-chain coverage, making it better for protocols operating across multiple chains. TRM Labs covers 30+ chains at competitive pricing, suited to mid-market VASPs with diverse asset mixes. Crystal Blockchain is strong for Bitcoin-focused European VASPs.</p>
+        <p>Before committing, run a test batch of addresses with known risk profiles through your shortlisted vendors and compare: are the same addresses flagged? Do the category breakdowns align? Are false positive rates comparable? Read the methodology documentation — vendors who publish detailed methodology are more likely to produce defensible results in regulatory and legal contexts. Most enterprise providers offer proof-of-concept access for evaluation.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f9" id="b9">
+        <h3>Does using a hardware wallet or self-custody wallet affect screening results?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f9" class="faq-content" role="region" aria-labelledby="b9">
+        <p>The type of wallet — hardware, software, custodial, or non-custodial — has no effect on AML screening results. Risk scores are based entirely on on-chain transaction history: which entities the address has transacted with, at what hop distance, and in what volume. A Ledger hardware wallet address with direct exposure to a sanctioned entity will receive the same high score as a software wallet with identical on-chain history.</p>
+        <p>What wallet custody type does affect is the regulatory treatment of the transfer. Transfers to or from unhosted (self-custody) wallets trigger additional requirements in many jurisdictions — most regulators require VASPs to collect proof that the customer controls the unhosted wallet (e.g. a signed message from the address) and apply enhanced due diligence above the Travel Rule threshold. This is a separate obligation from the transaction risk screening itself, but both apply when an unhosted wallet is involved.</p>
+      </div>
+    </div>
+
+  </section>
+
+</article>
+</main>
+
+<footer class="container" role="contentinfo" style="padding:2rem 0;border-top:1px solid var(--line);margin-top:2rem">
+  <p class="muted">© 2026 Wallet Screening Guide. Educational content with compliance-first operational focus. Not legal advice. Updated <time datetime="2026-01-20">March 2026</time>.</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      const body = document.getElementById(btn.getAttribute('aria-controls'));
+      btn.setAttribute('aria-expanded', String(!open));
+      btn.querySelector('.faq-plus').textContent = open ? '+' : '−';
+      body.style.maxHeight = open ? '0' : body.scrollHeight + 'px';
+      body.classList.toggle('open', !open);
+    });
+  });
+</script>
+
+</body>
+</html>
