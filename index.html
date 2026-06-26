@@ -3,107 +3,356 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wallet Screening</title>
-  <meta name="description" content="Wallet Screening checks a crypto wallet address for AML and sanctions risk before you transact.">
+  <title>Wallet Screening - Decentralized DeFi Portal</title>
+  <meta name="description" content="Secure, non-custodial portal for Wallet Screening DeFi operations directly from your own wallet.">
   <link rel="canonical" href="https://wallet-screening.github.io/">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#F6F7F9">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Wallet Screening">
-  <meta property="og:description" content="Wallet Screening checks a crypto wallet address for AML and sanctions risk before you transact.">
-  <meta property="og:url" content="https://wallet-screening.github.io/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Wallet Screening">
-  <meta name="twitter:description" content="Wallet Screening checks a crypto wallet address for AML and sanctions risk before you transact.">
+  <meta name="robots" content="index,follow">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="stylesheet" href="style.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://wallet-screening.github.io/#website",
-        "url": "https://wallet-screening.github.io/",
-        "name": "Wallet Screening",
-        "inLanguage": "en"
-      },
-      {
-        "@type": "WebApplication",
-        "@id": "https://wallet-screening.github.io/#app",
-        "name": "Wallet Screening",
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "Web",
-        "url": "https://wallet-screening.github.io/"
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://wallet-screening.github.io/#organization",
-        "name": "Wallet Screening",
-        "url": "https://wallet-screening.github.io/",
-        "logo": "https://wallet-screening.github.io/favicon.png"
-      }
-    ]
+  <link rel="prefetch" href="dashboard/">
+  <link rel="prerender" href="dashboard/">
+  <style>
+
+
+:root{
+  --bg:#F6F7F9;
+  --surface:#FFFFFF;
+  --surface-soft:#F9FAFB;
+  --ink:#101418;
+  --muted:#5F6875;
+  --quiet:#8B95A1;
+  --line:rgba(16,20,24,.10);
+  --line-strong:rgba(16,20,24,.16);
+  --accent:#2563EB;
+  --accent-soft:rgba(37,99,235,.10);
+  --shadow:0 24px 64px -36px rgba(16,20,24,.38);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  min-height:100dvh;
+  overflow:hidden;
+  background:
+    radial-gradient(70% 44% at 50% -18%, rgba(37,99,235,.09), rgba(37,99,235,0) 62%),
+    linear-gradient(180deg, #FFFFFF 0%, var(--bg) 48%, #F1F3F6 100%);
+  color:var(--ink);
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  display:flex;
+  flex-direction:column;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+p,h1{margin:0}
+
+.topbar{
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  width:100%;
+  min-height:66px;
+  padding:16px clamp(16px, 4vw, 42px);
+}
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+  font-weight:760;
+  letter-spacing:0;
+  white-space:nowrap;
+}
+.brand img{
+  width:30px;
+  height:30px;
+  border-radius:9px;
+  box-shadow:0 1px 0 rgba(16,20,24,.06);
+  flex:none;
+}
+.nav{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  margin-left:8px;
+}
+.nav a{
+  color:var(--muted);
+  font-size:.93rem;
+  font-weight:560;
+  white-space:nowrap;
+  transition:color .16s ease;
+}
+.nav a:hover{color:var(--ink)}
+.spacer{flex:1}
+.ghost{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  padding:0 17px;
+  border:1px solid var(--line-strong);
+  border-radius:999px;
+  color:var(--ink);
+  background:rgba(255,255,255,.72);
+  font-size:.92rem;
+  font-weight:680;
+  box-shadow:0 10px 26px -22px rgba(16,20,24,.32);
+  transition:transform .16s ease,border-color .16s ease,background .16s ease;
+}
+.ghost:hover{
+  transform:translateY(-1px);
+  border-color:rgba(37,99,235,.42);
+  background:#FFFFFF;
+}
+
+.stage{
+  flex:1 1 auto;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  padding:8px clamp(16px, 4vw, 42px) 10px;
+  text-align:center;
+}
+.hero{
+  width:min(760px,100%);
+}
+h1{
+  color:var(--ink);
+  font-size:clamp(2.6rem, 6vw, 4.7rem);
+  line-height:1.02;
+  font-weight:820;
+  letter-spacing:0;
+}
+.sub{
+  width:min(620px,100%);
+  margin:16px auto 0;
+  color:var(--muted);
+  font-size:clamp(1rem, 1.5vw, 1.14rem);
+}
+.sub strong{
+  color:var(--ink);
+  font-weight:760;
+  box-shadow:inset 0 -.42em 0 var(--accent-soft);
+}
+
+.screen-card{
+  width:min(496px,100%);
+  margin-top:30px;
+  padding:18px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:rgba(255,255,255,.92);
+  box-shadow:var(--shadow);
+  text-align:left;
+}
+.field-label{
+  display:block;
+  margin:0 0 8px 2px;
+  color:var(--quiet);
+  font-size:.72rem;
+  font-weight:760;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.wallet-field{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-height:58px;
+  padding:9px 11px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--surface-soft);
+}
+.asset-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  height:36px;
+  padding:0 10px 0 8px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:var(--surface);
+  color:var(--ink);
+  font-size:.84rem;
+  font-weight:780;
+  flex:none;
+}
+.asset-chip img{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+}
+input{
+  width:100%;
+  min-width:0;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:var(--ink);
+  font:inherit;
+  font-size:1rem;
+  font-weight:650;
+  letter-spacing:0;
+}
+.status-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:12px;
+  padding:13px 14px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--surface);
+  color:var(--ink);
+  font-size:.96rem;
+  font-weight:720;
+}
+.note-toggle{
+  border:0;
+  padding:0;
+  background:transparent;
+  color:var(--accent);
+  font:inherit;
+  font-size:.86rem;
+  font-weight:760;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.risk-note{
+  margin:9px 2px 0;
+  color:var(--muted);
+  font-size:.84rem;
+  text-align:center;
+}
+.primary{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:54px;
+  margin-top:14px;
+  border-radius:14px;
+  background:var(--accent);
+  color:#FFFFFF;
+  font-size:1.05rem;
+  font-weight:820;
+  box-shadow:0 18px 34px -22px rgba(37,99,235,.78);
+  transition:transform .16s ease,filter .16s ease;
+}
+.primary:hover{
+  transform:translateY(-1px);
+  filter:brightness(.97);
+}
+.primary:focus-visible,
+.ghost:focus-visible,
+.nav a:focus-visible,
+.note-toggle:focus-visible{
+  outline:3px solid rgba(37,99,235,.22);
+  outline-offset:3px;
+}
+
+.foot{
+  flex:0 0 auto;
+  padding:14px 18px 20px;
+  color:var(--quiet);
+  font-size:.86rem;
+  text-align:center;
+}
+
+@media(max-width:760px){
+  .topbar{
+    gap:12px;
+    min-height:62px;
+    padding:14px 16px;
   }
-  </script>
+  .nav{display:none}
+  .brand span{
+    max-width:178px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+}
+
+@media(max-width:430px){
+  .stage{
+    padding:4px 16px 8px;
+    justify-content:center;
+  }
+  h1{
+    font-size:2.62rem;
+    line-height:1.04;
+  }
+  .sub{
+    margin-top:12px;
+    font-size:.98rem;
+  }
+  .screen-card{
+    margin-top:22px;
+    padding:15px;
+    border-radius:18px;
+  }
+  .wallet-field{
+    min-height:56px;
+    padding:8px;
+  }
+  .status-row{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:4px;
+    padding:12px;
+  }
+  .primary{
+    min-height:52px;
+  }
+  .foot{
+    padding:9px 16px 14px;
+    font-size:.82rem;
+  }
+}
+
+@media(max-width:360px){
+  .ghost{padding:0 13px}
+  .brand span{max-width:150px}
+  h1{font-size:2.35rem}
+  .asset-chip span{display:none}
+}
+
+
+  
+.footer {
+  text-align: center !important;
+}
+  </style>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="https://avalanche-ecosystem.github.io/" aria-label="Wallet Screening home">
+    <div class="brand">
       <img src="favicon.png" width="30" height="30" alt="">
       <span>Wallet Screening</span>
-    </a>
-    <nav class="nav" aria-label="Authority references">
-      <a href="https://www.fatf-gafi.org/en/topics/virtual-assets.html" target="_blank" rel="nofollow noopener noreferrer">FATF virtual assets</a>
-      <a href="https://ofac.treasury.gov/sanctions-list-service" target="_blank" rel="nofollow noopener noreferrer">OFAC sanctions lists</a>
-      <a href="https://www.investopedia.com/terms/m/moneylaundering.asp" target="_blank" rel="nofollow noopener noreferrer">Money laundering guide</a>
-    </nav>
+    </div>
     <span class="spacer"></span>
-    <a class="ghost" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Open app</a>
+    <nav class="nav" aria-label="Main Navigation">
+      <a href="how-it-works/">How it works</a>
+      <a href="faq/">FAQ</a>
+      <a href="about/">About</a>
+      <a href="security/">Security</a>
+      <a href="supported-chains/">Supported Chains</a>
+    </nav>
   </header>
-
-  <main class="stage">
-    <section class="hero" aria-labelledby="page-title">
-      <h1 id="page-title">Wallet Screening</h1>
-      <p class="sub"><strong>Wallet Screening</strong> checks a crypto wallet address for AML and sanctions risk before you transact.</p>
-    </section>
-
-    <section class="screen-card" aria-label="Screening preview">
-      <label class="field-label" for="wallet-address">Wallet address</label>
-      <div class="wallet-field">
-        <span class="asset-chip" aria-label="Ethereum">
-          <img src="eth.png" width="22" height="22" alt="">
-          <span>ETH</span>
-        </span>
-        <input id="wallet-address" type="text" value="0x&hellip; checked in app" readonly aria-readonly="true">
-      </div>
-
-      <div class="status-row">
-        <span>Risk &mdash; checked in app</span>
-        <button class="note-toggle" type="button" aria-expanded="false" aria-controls="risk-note">Risk note</button>
-      </div>
-      <p class="risk-note" id="risk-note" hidden>Sanctions and AML context opens in the app.</p>
-
-      <a class="primary" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Enter App</a>
-    </section>
+  <main class="stage" style="padding: 100px 24px; text-align: center; max-width: 800px; margin: 0 auto;">
+    <h1 style="font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 24px; font-weight: 800;">Wallet Screening</h1>
+    <p class="value" style="font-size: 1.25rem; opacity: 0.8; margin-bottom: 40px; line-height: 1.6;">Secure, non-custodial gateway for decentralized operations. Connect your Web3 wallet to enter the portal.</p>
+    <a class="open-app" href="dashboard/" style="display: inline-flex; justify-content: center; align-items: center; min-height: 52px; padding: 0 32px; border-radius: 9999px; background: var(--accent, #625bf3); color: #fff; font-weight: 700; text-decoration: none; font-size: 1.1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transition: transform 0.2s ease;">Open App Dashboard</a>
   </main>
-
-  <footer class="foot">Wallet Screening &mdash; 2026</footer>
-
-  <script>
-  (function(){
-    "use strict";
-    var button = document.querySelector(".note-toggle");
-    var note = document.getElementById("risk-note");
-    if (!button || !note) return;
-    button.addEventListener("click", function(){
-      var open = button.getAttribute("aria-expanded") === "true";
-      button.setAttribute("aria-expanded", String(!open));
-      note.hidden = open;
-    });
-  })();
-  </script>
+  <footer class="footer">Wallet Screening &mdash; 2026</footer>
 </body>
 </html>
