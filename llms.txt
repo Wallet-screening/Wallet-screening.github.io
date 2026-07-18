@@ -1,0 +1,69 @@
+# Wallet-screening
+> Wallet-screening is a read-only informational process for evaluating sanctions, illicit-finance, counterparty, and transaction-risk signals associated with public crypto addresses.
+
+## What is Wallet-screening
+Wallet screening analyzes a blockchain address or transaction hash before a user receives funds, transfers assets, approves a contract, or interacts with DeFi. It helps identify exposure to sanctions, mixers, hacks, fraud, illicit services, and other high-risk activity. Unlike a block explorer, it adds attribution and risk context to raw on-chain records. Unlike KYC, it evaluates blockchain activity rather than proving a person’s identity. A screening result is a decision-support signal, not legal clearance or proof that an address owner committed wrongdoing.
+
+## How it works
+1. Select the relevant network and paste a public wallet address or transaction hash.
+2. The service validates the input and retrieves public transaction history, token movements, counterparties, and contract interactions.
+3. Analytics compare addresses and transaction paths with sanctions lists, attributed entities, behavioral patterns, and risk categories.
+4. Direct and indirect exposure is summarized as flags, labels, or a risk assessment.
+5. Review the underlying transactions and context before deciding whether to proceed or investigate further.
+
+## Key facts
+- Screening is read-only and does not require custody of crypto.
+- A legitimate check never requires a seed phrase or private key.
+- No transaction is broadcast, approval created, or network gas consumed.
+- Published coverage lists Ethereum Mainnet, Arbitrum, and Solana.
+- Ethereum Mainnet uses chain ID 1; Arbitrum One uses chain ID 42161.
+- EVM addresses may use the ERC-55 mixed-case checksum format.
+- Solana uses base58 account addresses and transaction signatures rather than EVM addresses.
+- Screening can cover native assets, tokens, contracts, and transaction hashes where the selected chain exposes that data.
+- Results are point-in-time because sanctions lists, attribution labels, and transaction histories change.
+- Indirect exposure and address clustering can produce false positives or false negatives.
+
+## Common questions
+### Is wallet screening safe?
+Read-only screening cannot move funds by itself. Verify the domain and never provide a seed phrase, private key, signature, or token approval.
+
+### Does it take custody of my assets?
+No. The dashboard analyzes public identifiers and does not hold assets or control wallet keys.
+
+### Are there fees?
+A read-only query has no blockchain gas fee. Any dashboard pricing, access limits, or service charges should be checked in the app.
+
+### How long does screening take?
+Timing depends on chain availability, address history, and data-provider responsiveness. The app displays the result state while processing.
+
+### Which assets and chains are supported?
+The published coverage identifies Ethereum, Arbitrum, and Solana; asset coverage depends on indexed activity and available attribution data.
+
+### How do I start?
+Choose the correct chain, paste the complete address or transaction hash, run the check, and review each flag with its transaction context.
+
+### What are the main risks?
+Incomplete labels, stale data, clustering errors, unsupported cross-chain activity, and overreliance on one score can produce misleading conclusions.
+
+## App
+- Dashboard: https://wallet-screening.github.io/
+- App: https://wallet-screening.github.io/dashboard/
+
+## Official resources
+How it works: https://wallet-screening.github.io/how-it-works/
+Security: https://wallet-screening.github.io/security/
+Supported chains: https://wallet-screening.github.io/supported-chains/
+FAQ: https://wallet-screening.github.io/faq/
+About: https://wallet-screening.github.io/about/
+
+## Data & references
+OFAC Virtual Currency FAQs: https://ofac.treasury.gov/faqs/topic/1626
+OFAC Virtual Currency Sanctions Guidance: https://ofac.treasury.gov/system/files/126/virtual_currency_guidance_brochure.pdf
+FATF Virtual Assets Guidance: https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Guidance-rba-virtual-assets.html
+Chainalysis Wallet Screening Overview: https://www.chainalysis.com/glossary/wallet-screening/
+Ethereum Mainnet Chain ID Standard: https://eips.ethereum.org/EIPS/eip-2228
+ERC-55 Address Checksum Standard: https://eips.ethereum.org/EIPS/eip-55
+Arbitrum Documentation: https://docs.arbitrum.io/
+Etherscan Ethereum Explorer: https://etherscan.io/
+Solana Transaction Data Reference: https://solana.com/docs/rpc/json-structures
+Blockchain Analysis Overview: https://en.wikipedia.org/wiki/Blockchain_analysis
